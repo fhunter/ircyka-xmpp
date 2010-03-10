@@ -5,7 +5,7 @@ import time,os
 import sqlite3
 import greeting
 
-BOT=('ircyka@rnet.ru','')
+BOT=('ircyka@rnet.ru','','test')
 CONF=('fishbay@conference.rnet.ru','')
 NICK='ircyka'
 LOGDIR='./'
@@ -40,7 +40,7 @@ if 1:
     conn=sqlite3.connect('base.sqlite3')
     cl.RegisterHandler('message',messageCB)
     cl.RegisterHandler('presence',presenceCB)
-    cl.auth(JID(BOT[0]).getNode(),BOT[1])
+    cl.auth(JID(BOT[0]).getNode(),BOT[1],resource=BOT[2])
     p=Presence(to='%s/%s'%(CONF[0],NICK))
     p.setTag('x',namespace=NS_MUC).setTagData('password',CONF[1])
     p.getTag('x').addChild('history',{'maxchars':'0','maxstanzas':'0'})
