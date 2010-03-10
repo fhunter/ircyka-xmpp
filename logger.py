@@ -5,16 +5,17 @@ import time,os
 import sqlite3
 import greeting
 
-BOT=('ircyka@rnet.ru','somestupidpassword')
+BOT=('ircyka@rnet.ru','')
 CONF=('fishbay@conference.rnet.ru','')
+NICK='ircyka'
 LOGDIR='./'
 PROXY={}
 
 def messageCB(sess,mess):
     nick=mess.getFrom().getResource()
     text=mess.getBody()
-    if 'ircyka' in text and nick!='ircyka':
-        text=unicode('не грузи меня, я не сухогруз! я танкер, налей мне!','utf8');
+    resp=greeting.act_on_message(conn,nick,text)
+    for text in resp:
         cl.send(protocol.Message(CONF[0],text,"groupchat"))
 
 roster=[]
@@ -40,7 +41,7 @@ if 1:
     cl.RegisterHandler('message',messageCB)
     cl.RegisterHandler('presence',presenceCB)
     cl.auth(JID(BOT[0]).getNode(),BOT[1])
-    p=Presence(to='%s/ircyka'%CONF[0])
+    p=Presence(to='%s/%s'%(CONF[0],NICK))
     p.setTag('x',namespace=NS_MUC).setTagData('password',CONF[1])
     p.getTag('x').addChild('history',{'maxchars':'0','maxstanzas':'0'})
     cl.send(p)
