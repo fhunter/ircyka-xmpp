@@ -7,6 +7,6 @@ INSERT INTO "greetings" VALUES(NULL,'превед!');
 INSERT INTO "greetings" VALUES(NULL,'hi!');
 INSERT INTO "greetings" VALUES(NULL,'welcome toooo hell!');
 CREATE TABLE regexp (id primary key,regexp text,reaction text,is_command integer);
-INSERT INTO "regexp" VALUES(NULL,'*:*х*у*й','я с вами совсем одичаю, разучусь материться и стану словой @#$ писать через чёрточку',0);
-INSERT INTO "regexp" VALUES(NULL,'*:*ircyka:*','не грузи меня, я не сухогруз! я танкер, налей мне!',0);
+INSERT INTO "regexp" VALUES(NULL,'.*:*х*у*й','я с вами совсем одичаю, разучусь материться и стану словой @#$ писать через чёрточку',0);
+INSERT INTO "regexp" VALUES(NULL,'.*:*ircyka:*','не грузи меня, я не сухогруз! я танкер, налей мне!',0);
 COMMIT;
