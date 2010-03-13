@@ -1,14 +1,23 @@
-#!/usr/bin/python
+#h!/usr/bin/python
 # -*- coding: utf-8 -*-
 from xmpp import *
 import time,os
 import sqlite3
 import greeting
+import settings
 
-BOT=('@rnet.ru','','пивная')
-CONF=('fishbay@conference.rnet.ru','')
+setts=settings.get_values()
+BOT=['@rnet.ru','','пивная']
+if setts['jid'] != None:
+    BOT[0]=setts['jid']
+if setts['password']!=None:
+    BOT[1]=setts['password'];
+CONF=['fishbay@conference.rnet.ru','']
+if setts['conference']!=None:
+    CONF[0]=setts['conference']
 NICK='ircyka'
-LOGDIR='./'
+if setts['nick']!=None:
+    NICK=setts['nick']
 PROXY={}
 
 def messageCB(sess,mess):
