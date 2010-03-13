@@ -1,12 +1,12 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE greetings (id primary key,greeting text);
-INSERT INTO "greetings" VALUES(NULL,'ALoha foa!');
-INSERT INTO "greetings" VALUES(NULL,'Привет!');
-INSERT INTO "greetings" VALUES(NULL,'Превед!');
-INSERT INTO "greetings" VALUES(NULL,'Hi!');
+INSERT INTO "greetings" VALUES(NULL,'aloha!');
+INSERT INTO "greetings" VALUES(NULL,'привет!');
+INSERT INTO "greetings" VALUES(NULL,'превед!');
+INSERT INTO "greetings" VALUES(NULL,'hi!');
 INSERT INTO "greetings" VALUES(NULL,'welcome toooo hell!');
 CREATE TABLE regexp (id primary key,regexp text,reaction text,is_command integer);
-INSERT INTO "regexp" VALUES(NULL,'х*у*й','я с вами совсем одичаю, разучусь материться и стану словой @#$ писать через чёрточку',0);
-INSERT INTO "regexp" VALUES(NULL,'ircyka:*','не грузи меня, я не сухогруз! я танкер, налей мне!',0);
+INSERT INTO "regexp" VALUES(NULL,'*:*х*у*й','я с вами совсем одичаю, разучусь материться и стану словой @#$ писать через чёрточку',0);
+INSERT INTO "regexp" VALUES(NULL,'*:*ircyka:*','не грузи меня, я не сухогруз! я танкер, налей мне!',0);
 COMMIT;
