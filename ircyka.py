@@ -3,19 +3,20 @@
 from xmpp import *
 import time,os
 import sqlite3
-import greeting
+import messages
 import settings
 
 setts=settings.get_values()
-BOT=['@rnet.ru','','пивная']
+BOT=['','','']
+CONF=['','']
 if setts['jid'] != None:
     BOT[0]=setts['jid']
 if setts['password']!=None:
     BOT[1]=setts['password'];
-CONF=['fishbay@conference.rnet.ru','']
+if setts['resource']!=None:
+    BOT[2]=setts['resource'];
 if setts['conference']!=None:
     CONF[0]=setts['conference']
-NICK='ircyka'
 if setts['nick']!=None:
     NICK=setts['nick']
 PROXY={}
@@ -23,7 +24,7 @@ PROXY={}
 def messageCB(sess,mess):
     nick=mess.getFrom().getResource()
     text=mess.getBody()
-    resp=greeting.act_on_message(conn,nick,text)
+    resp=messages.act_on_message(conn,nick,text)
     for text in resp:
         cl.send(protocol.Message(CONF[0],text,"groupchat"))
 
@@ -36,10 +37,10 @@ def presenceCB(sess,pres):
             roster.remove(nick)
     else:
         if nick not in roster:
-            if nick == 'ircyka':
+            if nick == NICK:
                 text=''
             else:
-                text=nick+': '+greeting.get_greeting(conn)
+                text=nick+': '+messages.get_greeting(conn)
             roster.append(nick)
     if text: cl.send(protocol.Message(CONF[0],text,'groupchat'))
 
