@@ -24,7 +24,7 @@ PROXY={}
 def messageCB(sess,mess):
     nick=mess.getFrom().getResource()
     text=mess.getBody()
-    resp=messages.act_on_message(conn,nick,text)
+    resp=messages.act_on_message(conn,setts,nick,text)
     for text in resp:
         cl.send(protocol.Message(CONF[0],text,"groupchat"))
 

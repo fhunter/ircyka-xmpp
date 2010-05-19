@@ -10,9 +10,9 @@ def get_greeting(conn):
     cursor.close()
     return greet_list[random.randrange(0,number-1)][0]
 
-def act_on_message(conn,nick,text):
+def act_on_message(conn,settings,nick,text):
     responces=[]
-    if nick=='ircyka':
+    if nick==settings['nick']:
         return responces
     cursor=conn.cursor()
     cursor.execute('select regexp,reaction from regexp')
